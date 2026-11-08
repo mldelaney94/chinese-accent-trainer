@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>新闻联播 · accent trainer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside id="sidebar">
+  <header>
+    <h1>新闻联播</h1>
+    <div class="sub">accent trainer</div>
+  </header>
+  <ul id="segment-list"></ul>
+</aside>
+
+<main id="main">
+  <section id="empty" class="pane">
+    <p>Select a segment on the left.</p>
+    <p class="hint">Ingest more with <code>trainer ingest YYYY-MM-DD</code>.</p>
+  </section>
+
+  <section id="player" class="pane hidden">
+    <header id="seg-header">
+      <div id="seg-date"></div>
+      <h2 id="seg-headline"></h2>
+      <div id="seg-tags"></div>
+      <div id="seg-qc"></div>
+    </header>
+
+    <div id="transport">
+      <button id="btn-play" title="space">▶</button>
+      <span id="time">0:00 / 0:00</span>
+      <label>speed
+        <select id="rate">
+          <option value="0.7">0.7×</option>
+          <option value="0.85">0.85×</option>
+          <option value="1" selected>1×</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="loop"> loop paragraph</label>
+      <label><input type="checkbox" id="show-words" checked> words</label>
+      <span class="spacer"></span>
+      <span id="selected-para" class="muted">no paragraph selected</span>
+    </div>
+    <audio id="audio" preload="auto"></audio>
+
+    <div id="triptych">
+      <div class="col-head">汉字</div>
+      <div class="col-head">拼音</div>
+      <div class="col-head">English</div>
+      <div id="rows"></div>
+    </div>
+
+    <div id="practice">
+      <div class="practice-bar">
+        <button id="btn-record" disabled>● record</button>
+        <button id="btn-play-ref" disabled>▶ reference</button>
+        <button id="btn-play-mine" disabled>▶ mine</button>
+        <span id="practice-status" class="muted">select a paragraph to practise</span>
+        <span class="spacer"></span>
+        <span id="practice-score"></span>
+      </div>
+      <canvas id="contour" width="1600" height="360"></canvas>
+      <div class="legend">
+        <span><i class="sw ref"></i> reference (semitones vs. her median)</span>
+        <span><i class="sw live"></i> you, live</span>
+        <span><i class="sw usr"></i> you, time-warped onto reference</span>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="app.js" type="module"></script>
+</body>
+</html>
